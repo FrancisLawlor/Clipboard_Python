@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import getopt
 import Tkinter
 from Tkinter import *
 
@@ -9,21 +10,46 @@ def getValue(entry):
 def copyToClipboard(entry):
     entry.clipboard_clear()
     entry.clipboard_append(entry.get())
-    
-f = open('words.txt','r')
 
-window = Tkinter.Tk()
-window.title="Clipboard"
+def drawGui(filename):
+    f = open(filename,'r')
 
-# Row number
-r = 1
+    window = Tkinter.Tk()
+    window.title="Clipboard"
 
-for line in f:
-    entry = Entry()
-    entry.insert(END, line)
-    entry.grid(row=r, column=2)
-    button = Button(text=r, command=getValue(entry))
-    button.grid(row=r, column=1)
-    r = r + 1
+    # Row number
+    r = 1
 
-window.mainloop()
+    for line in f:
+        entry = Entry()
+        entry.insert(END, line)
+        entry.grid(row = r, column = 2)
+        button = Button(text = r, command = getValue(entry))
+        button.grid(row = r, column = 1)
+        r = r + 1
+
+    window.mainloop()
+
+filename = ""
+
+try:
+    opts, args = getopt.getopt(sys.argv[1:], 'l:')
+except getopt.GetoptError:
+    print("Invalid input.")
+    sys.exit(2)
+
+for opt, arg in opts:
+    if opt in ('-l'):
+        filename = arg
+        if(filename == ""):
+            print("Filename required.")
+            sys.exit(2)
+    else:
+        print("Invalid Input")
+        sys.exit(2)
+
+if(filename == ""):
+    print("Filename required.")
+    sys.exit(2)
+            
+drawGui(filename)
