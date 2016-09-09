@@ -22,7 +22,7 @@ def drawGui(filename):
 
     for line in f:
         entry = Entry()
-        entry.insert(END, line)
+        entry.insert(END, line[:-1])
         entry.grid(row = r, column = 2)
         button = Button(text = r, command = getValue(entry))
         button.grid(row = r, column = 1)
