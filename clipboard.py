@@ -4,13 +4,16 @@ import getopt
 import Tkinter
 from Tkinter import *
 
+# Get value inserted to entry at time of rendering.
 def getValue(entry):
     return lambda: copyToClipboard(entry)
     
+# Copy the contents of the entry field to the clipboard by clearing and then appending.
 def copyToClipboard(entry):
     entry.clipboard_clear()
     entry.clipboard_append(entry.get())
 
+# Insert lines from file to entry fields in the gui.
 def drawGui(filename):
     f = open(filename,'r')
 
@@ -22,6 +25,8 @@ def drawGui(filename):
 
     for line in f:
         entry = Entry()
+        
+        # Add each line from the file without the '\n' character.
         entry.insert(END, line[:-1])
         entry.grid(row = r, column = 2)
         button = Button(text = r, command = getValue(entry))
@@ -31,6 +36,8 @@ def drawGui(filename):
     window.mainloop()
 
 filename = ""
+
+# Handle filename input.
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], 'l:')
