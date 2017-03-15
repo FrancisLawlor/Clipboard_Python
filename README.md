@@ -14,7 +14,7 @@ Clone respository:
 git clone https://github.com/FrancisLawlor/Clipboard_Python.git
 ```
 
-Navigate to local repo run:
+Navigate to local repo and run:
 
 ```
 ./clipboard.py -l words.txt
