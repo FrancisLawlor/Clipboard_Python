@@ -1,6 +1,6 @@
 # Clipboard
 	
-![Clipboard](Clipboard.png)
+![Clipboard](DisplayImage.png)
 
 Python utility for making phrases easily accessible with a single click.
 
